@@ -1,4 +1,8 @@
-import { caeser, base64, morse, charCode } from '../index.js'
+console.log('\n----------------')
+console.log('Regular Tests')
+console.log('----------------\n')
+
+import { caeser, base64, morse, charCode, bacon } from '../index.js'
 
 assert(caeser.encode('hello', 3), 'khoor', 'Caeser Cipher - Encode')
 assert(caeser.decode('khoor', 3), 'hello', 'Caeser Cipher - Decode')
@@ -18,6 +22,17 @@ assert(
 	charCode.decode('104/101/108/108/111', '/'),
 	'hello',
 	'Char Code - Decode',
+)
+
+assert(
+	bacon.encode('hello'),
+	'AABBB AABAA ABABA ABABA ABBAB',
+	'Bacon Cipher - Encode',
+)
+assert(
+	bacon.decode('AABBB AABAA ABABA ABABA ABBAB'),
+	'hello',
+	'Bacon Cipher - Decode',
 )
 
 function assert(a, b, name) {

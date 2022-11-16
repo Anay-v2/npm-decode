@@ -1,14 +1,21 @@
 {
 	"name": "npm-decode",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Easily encode and decode strings using popular encrypting methods",
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "node ./tests/index.test.js && node ./tests/validate.test.js"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": [
+		"encrypt",
+		"decrypt",
+		"encode",
+		"decode"
+	],
+	"homepage": "https://github.com/Anay-v2/npm-decode",
+	"bugs": "https://github.com/Anay-v2/npm-decode/issues",
+	"author": "Anay Sehgal",
 	"license": "ISC",
 	"devDependencies": {
 		"@types/node": "^18.11.9"
