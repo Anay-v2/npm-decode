@@ -2,7 +2,7 @@
 
 Easily encode and decode strings using popular encrypting methods
 
-`npm i @anay69420/decode`
+`npm i @anay69420/npm-decode`
 
 # Usage
 
