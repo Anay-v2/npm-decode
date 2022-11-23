@@ -6,8 +6,6 @@ import { caeser, base64, morse, charCode, bacon } from '../index.js'
 
 succeed(() => caeser.encode('hello', 3), 'Caeser Encode: Normal')
 succeed(() => caeser.decode('khoor', 3), 'Caeser Decode: Normal')
-fail(() => caeser.encode('//][', 3), 'Caeser Encode: Wrong String')
-fail(() => caeser.decode('//][', 3), 'Caeser Decode: Wrong String')
 fail(() => caeser.encode(1, 3), 'Caeser Encode: Wrong String Type')
 fail(() => caeser.decode(1, 3), 'Caeser Decode: Wrong String Type')
 fail(() => caeser.encode('hello', -2), 'Caeser Encode: Wrong Key (negative)')
@@ -18,11 +16,6 @@ succeed(() => base64.encode('hello'), 'Base64 Encode: Normal')
 succeed(() => base64.decode('aGVsbG8='), 'Base64 Decode: Normal')
 succeed(() => morse.encode('hello'), 'Morse Encode: Normal')
 succeed(() => morse.decode('.... . .-.. .-.. ---'), 'Morse Decode: Normal')
-fail(() => morse.encode('фаил'), 'Morse Encode: Wrong String')
-fail(
-	() => morse.decode('-..-.---... -....----.. -.-.-.-..-...'),
-	'Morse Decode: Wrong String',
-)
 fail(() => morse.encode(4), 'Morse Encode: Wrong String Type')
 fail(() => morse.decode(4), 'Morse Decode: Wrong String Type')
 succeed(() => charCode.encode('hello', '/'), 'Char code Encode: Normal')
@@ -54,9 +47,7 @@ succeed(
 	() => bacon.decode('AABBB AABAA ABABA ABABA ABBAB'),
 	'Bacon Decode: Normal',
 )
-fail(() => bacon.encode('фаил'), 'Bacon Encode: Wrong String')
-fail(() => bacon.decode('AABABAABA ABABA'), 'Bacon Decode: Wrong String')
-fail(() => bacon.encode(3), 'Bacon Encode: Wrong Type')
+fail(() => bacon.encode(3), 'Bacon Encode: Wrong String Type')
 fail(() => bacon.decode(3), 'Bacon Decode: Wrong String Type')
 
 function fail(f, name) {
@@ -66,24 +57,18 @@ function fail(f, name) {
 		console.log('✓ Test Passed:', name)
 		return
 	}
-	console.log(
-		'✗ Test Failed:',
-		name,
-		'. Expected to fail, but instead passed',
+	throw new Error(
+		`✗ Test Failed: ${name}. Expected to fail but instead passed`,
 	)
-	process.exit()
 }
 
 function succeed(f, name) {
 	try {
 		f()
 	} catch {
-		console.log(
-			'✗ Test Failed:',
-			name,
-			'. Expected to pass, but instead failed',
+		throw new Error(
+			`✗ Test Failed: ${name}. Expected to pass but instead failed`,
 		)
-		process.exit()
 	}
 	console.log('✓ Test Passed:', name)
 }
