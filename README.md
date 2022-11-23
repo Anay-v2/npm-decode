@@ -66,3 +66,31 @@ bacon.decode('AABBB AABAA ABABA ABABA ABBAB') // hello
 bacon.encode('hello', { a: '-', b: '/' }) // --/// --/-- -/-/- -/-/- -//-/
 bacon.decode('--/// --/-- -/-/- -/-/- -//-/', '/', { a: '-', b: '/' }) // hello
 ```
+
+-   Affine Cipher [About](https://en.wikipedia.org/wiki/Affine_cipher)
+
+```js
+import { affine } from 'decode'
+affine.encode('hello', [5 /*a*/, 8 /*b*/]) // rclla
+bacon.decode('rclla', [5, 8]) // hello
+// Note that a must be coprime to 26
+```
+
+-   Rail Fence Cipher [About](https://en.wikipedia.org/wiki/Rail_fence_cipher)
+
+```js
+import { railFence } from 'decode'
+railFence.encode('hello', [2, 0]) // hloel
+railFence.decode('hloel', [2, 0] // hello
+```
+
+# Changelog
+
+-   v1.1.0
+
+    -   Add Affine cipher **MAJOR**
+    -   Make Unknown characters and Uppercase characters work **MAJOR**
+
+-   v1.2.0
+    -   Add Rail Fence Cipher **MAJOR**
+    -   Add validation tests for Affine cipher and Rail Fence cipher

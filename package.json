@@ -1,6 +1,6 @@
 {
 	"name": "npm-decode",
-	"version": "1.0.0",
+	"version": "1.2.0",
 	"description": "Easily encode and decode strings using popular encrypting methods",
 	"main": "index.js",
 	"type": "module",

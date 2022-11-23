@@ -2,7 +2,15 @@ console.log('\n-----------------')
 console.log('Validation Tests')
 console.log('-----------------\n')
 
-import { caeser, base64, morse, charCode, bacon } from '../index.js'
+import {
+	caeser,
+	base64,
+	morse,
+	charCode,
+	bacon,
+	affine,
+	railFence,
+} from '../index.js'
 
 succeed(() => caeser.encode('hello', 3), 'Caeser Encode: Normal')
 succeed(() => caeser.decode('khoor', 3), 'Caeser Decode: Normal')
@@ -49,6 +57,63 @@ succeed(
 )
 fail(() => bacon.encode(3), 'Bacon Encode: Wrong String Type')
 fail(() => bacon.decode(3), 'Bacon Decode: Wrong String Type')
+succeed(() => affine.encode('hello', [5, 8]), 'Affine Encode: Normal')
+succeed(() => affine.decode('rclla', [5, 8]), 'Affine Decode: Normal')
+fail(() => affine.encode(1), 'Affine Encode: Wrong String Type')
+fail(() => affine.decode(1), 'Affine Decode: Wrong String Type')
+fail(
+	() => affine.encode('hello', [-2, -3]),
+	'Affine Encode: Wrong Key (negative)',
+)
+fail(
+	() => affine.decode('rclla', [-2, -3]),
+	'Affine Decode: Wrong Key (negative)',
+)
+fail(
+	() => affine.encode('hello', [2, 8]),
+	'Affine Encode: Wrong Key (not coprime)',
+)
+fail(
+	() => affine.decode('rclla', [2, 8]),
+	'Affine Decode: Wrong Key (not coprime)',
+)
+fail(
+	() => affine.encode('hello', ['2', '3']),
+	'Affine Encode: Wrong Key (string)',
+)
+fail(
+	() => affine.decode('rclla', ['2', '3']),
+	'Affine Decode: Wrong Key (string)',
+)
+
+succeed(() => railFence.encode('hello', [2, 0]), 'Rail Fence Encode: Normal')
+succeed(() => railFence.decode('hloel', [2, 0]), 'Rail Fence Decode: Normal')
+fail(() => railFence.encode(1), 'Rail Fence Encode: Wrong String Type')
+fail(() => railFence.decode(1), 'Rail Fence Decode: Wrong String Type')
+fail(
+	() => railFence.encode('hello', [-2, -3]),
+	'Rail Fence Encode: Wrong Key (negative)',
+)
+fail(
+	() => railFence.decode('hloel', [-2, -3]),
+	'Rail Fence Decode: Wrong Key (negative)',
+)
+fail(
+	() => railFence.encode('hello', [98, 0]),
+	'Rail Fence Encode: Wrong Key (too big)',
+)
+fail(
+	() => railFence.decode('hloel', [98, 0]),
+	'Rail Fence Decode: Wrong Key (too big)',
+)
+fail(
+	() => railFence.encode('hello', ['2', '3']),
+	'Rail Fence Encode: Wrong Key (string)',
+)
+fail(
+	() => railFence.decode('hloel', ['2', '3']),
+	'Rail Fence Decode: Wrong Key (string)',
+)
 
 function fail(f, name) {
 	try {

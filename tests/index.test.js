@@ -2,7 +2,15 @@ console.log('\n----------------')
 console.log('Regular Tests')
 console.log('----------------\n')
 
-import { caeser, base64, morse, charCode, bacon, affine } from '../index.js'
+import {
+	caeser,
+	base64,
+	morse,
+	charCode,
+	bacon,
+	affine,
+	railFence,
+} from '../index.js'
 
 assert(caeser.encode('Hello!', 3), 'Khoor!', 'Caeser Cipher - Encode')
 assert(caeser.decode('Khoor!', 3), 'Hello!', 'Caeser Cipher - Decode')
@@ -37,6 +45,9 @@ assert(
 
 assert(affine.encode('Hello!', [5, 8]), 'Rclla!', 'Affine Cipher - Encode')
 assert(affine.decode('Rclla!', [5, 8]), 'Hello!', 'Affine Cipher - Decode')
+
+assert(railFence.encode('Hello!', [2, 0]), 'Hloel!', 'Rail Fence - Encode')
+assert(railFence.decode('Hloel!', [2, 0]), 'Hello!', 'Rail Fence - Decode')
 
 function assert(a, b, name) {
 	if (a === b) console.log('✓ Test Passed:', name)
