@@ -90,7 +90,16 @@ railFence.decode('hloel', [2, 0] // hello
 hash.create('hello') // 9b71d224bd62f3785d96d46ad3ea...
 // By default it uses SHA-256 algorithm with output as hexadecimal.
 // You can provide options to change this.
-hash.create('hello', ['SHA-512', 'base64']) // m3HSJL1i83hdltRq0+o9czGb+8KJ...
+hash.create('hello', ['sha512', 'base64']) // m3HSJL1i83hdltRq0+o9czGb+8KJ...
+```
+
+-   HMAC [About](https://en.wikipedia.org/wiki/HMAC)
+
+```js
+hmac.create(['hello' /*string*/, 'abc 123' /*key*/]) //08b81922163891559333fa6b30e2...
+// By default it uses SHA-256 algorithm with output as hexadecimal.
+// You can provide options to change this.
+hmac.create(['hello', 'abc 123'], ['sha512', 'base64']) // +ndU5Yc30cV9pg+fRFUZGay/Nuum==...
 ```
 
 # Changelog
