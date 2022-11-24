@@ -84,6 +84,15 @@ railFence.encode('hello', [2, 0]) // hloel
 railFence.decode('hloel', [2, 0] // hello
 ```
 
+-   Hash [About](https://en.wikipedia.org/wiki/Cryptographic_hash_function)
+
+```js
+hash.create('hello') // 9b71d224bd62f3785d96d46ad3ea...
+// By default it uses SHA-256 algorithm with output as hexadecimal.
+// You can provide options to change this.
+hash.create('hello', ['SHA-512', 'base64']) // m3HSJL1i83hdltRq0+o9czGb+8KJ...
+```
+
 # Changelog
 
 -   v1.1.0
@@ -92,5 +101,10 @@ railFence.decode('hloel', [2, 0] // hello
     -   Make Unknown characters and Uppercase characters work **MAJOR**
 
 -   v1.2.0
+
     -   Add Rail Fence Cipher **MAJOR**
     -   Add validation tests for Affine cipher and Rail Fence cipher
+
+-   v1.3.0
+    -   Add hashing function **MAJOR**
+    -   Add HMAC function **MAJOR**

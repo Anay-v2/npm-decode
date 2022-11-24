@@ -1,5 +1,26 @@
 import { decode } from './lib/index.js'
 
-const { caeser, morse, base64, charCode, bacon, affine, railFence } = decode
+const {
+	caeser,
+	morse,
+	base64,
+	charCode,
+	bacon,
+	affine,
+	railFence,
+	hash,
+	hmac,
+} = decode
 
-export { decode, caeser, base64, morse, charCode, bacon, affine, railFence }
+export {
+	decode,
+	caeser,
+	base64,
+	morse,
+	charCode,
+	bacon,
+	affine,
+	railFence,
+	hash,
+	hmac,
+}

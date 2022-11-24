@@ -1,7 +1,6 @@
 console.log('\n-----------------')
 console.log('Validation Tests')
 console.log('-----------------\n')
-
 import {
 	caeser,
 	base64,
@@ -10,6 +9,8 @@ import {
 	bacon,
 	affine,
 	railFence,
+	hash,
+	hmac,
 } from '../index.js'
 
 succeed(() => caeser.encode('hello', 3), 'Caeser Encode: Normal')
@@ -114,6 +115,21 @@ fail(
 	() => railFence.decode('hloel', ['2', '3']),
 	'Rail Fence Decode: Wrong Key (string)',
 )
+
+succeed(() => hash.create('hello', ['sha256', 'hex']), 'Hash: Normal')
+fail(() => hash.create(1), 'Hash: Wrong String Type')
+fail(() => hash.create('hello', 3), 'Hash: Wrong Options type')
+fail(() => hash.create('hello', [-3, 456]), 'Hash: Wrong Options')
+
+succeed(
+	() => hmac.create(['hello', 'abc 123'], ['sha256', 'hex']),
+	'HMAC: Normal',
+)
+fail(() => hmac.create([1, 'abc 123']), 'HMAC: Wrong String Type')
+fail(() => hmac.create(['hello', 'abcdefg 123 /wrong/']), 'HMAC: Wrong Key')
+fail(() => hmac.create(['hello', 1]), 'HMAC: Wrong Key Type')
+fail(() => hmac.create(['hello', 'abc 123'], 3), 'HMAC: Wrong Options type')
+fail(() => hmac.create(['hello', 'abc 123'], [-3, 456]), 'HMAC: Wrong Options')
 
 function fail(f, name) {
 	try {
