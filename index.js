@@ -10,6 +10,7 @@ const {
 	railFence,
 	hash,
 	hmac,
+	vignere,
 } = decode
 
 export {
@@ -23,4 +24,5 @@ export {
 	railFence,
 	hash,
 	hmac,
+	vignere,
 }

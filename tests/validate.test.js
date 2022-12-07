@@ -11,6 +11,7 @@ import {
 	railFence,
 	hash,
 	hmac,
+	vignere,
 } from '../index.js'
 
 succeed(() => caeser.encode('hello', 3), 'Caeser Encode: Normal')
@@ -130,6 +131,14 @@ fail(() => hmac.create(['hello', 'abcdefg 123 /wrong/']), 'HMAC: Wrong Key')
 fail(() => hmac.create(['hello', 1]), 'HMAC: Wrong Key Type')
 fail(() => hmac.create(['hello', 'abc 123'], 3), 'HMAC: Wrong Options type')
 fail(() => hmac.create(['hello', 'abc 123'], [-3, 456]), 'HMAC: Wrong Options')
+
+succeed(() => vignere.encode('Hello!', 'world'), 'Vignere: Normal')
+fail(() => vignere.encode(4, 'world'), 'Vignere: Wrong String Type')
+fail(() => vignere.encode('Hello!', 4), 'Vignere: Wrong Key Type')
+fail(
+	() => vignere.encode('Hello!', 'World!'),
+	'Vignere: Unknown Characters In Key',
+)
 
 function fail(f, name) {
 	try {

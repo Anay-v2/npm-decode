@@ -12,6 +12,7 @@ import {
 	railFence,
 	hash,
 	hmac,
+	vignere,
 } from '../index.js'
 
 assert(caeser.encode('Hello!', 3), 'Khoor!', 'Caeser Cipher - Encode')
@@ -72,6 +73,9 @@ assert(
 	'+ndU5Yc30cV9pg+fRFUZGay/NuumgX2k13WPcPWlDijWVmbYElLNWyzcOhi4+oKQXNyKpQTNmIsslhFSLiQysw==',
 	'HMAC - Options',
 )
+
+assert(vignere.encode('Hello!', 'world'), 'Dscwr!', 'Vignere - Encode')
+assert(vignere.decode('Dscwr!', 'world'), 'Hello!', 'Vignere - Decode')
 
 function assert(a, b, name) {
 	if (a === b) console.log('✓ Test Passed:', name)

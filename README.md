@@ -102,18 +102,30 @@ hmac.create(['hello' /*string*/, 'abc 123' /*key*/]) //08b81922163891559333fa6b3
 hmac.create(['hello', 'abc 123'], ['sha512', 'base64']) // +ndU5Yc30cV9pg+fRFUZGay/Nuum==...
 ```
 
+-   Vignere Cipher [About](https://en.wikipedia.org/wiki/vignere_cipher)
+
+```js
+import { vignere } from 'decode'
+vignere.encode('hello', 'world') // dscwr
+vignere.decode('dscwr', 'world' // hello
+```
+
 # Changelog
 
--   v1.1.0
+-   v1.4.0
 
-    -   Add Affine cipher **MAJOR**
-    -   Make Unknown characters and Uppercase characters work **MAJOR**
+    -   Add vignere cipher
+
+-   v1.3.0
+
+    -   Add hashing function
+    -   Add HMAC function
 
 -   v1.2.0
 
-    -   Add Rail Fence Cipher **MAJOR**
-    -   Add validation tests for Affine cipher and Rail Fence cipher
+    -   Add Rail Fence Cipher
 
--   v1.3.0
-    -   Add hashing function **MAJOR**
-    -   Add HMAC function **MAJOR**
+-   v1.1.0
+
+    -   Add Affine cipher
+    -   Make Unknown characters and Uppercase characters work
